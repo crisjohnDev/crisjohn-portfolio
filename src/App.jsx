@@ -204,6 +204,18 @@ export default function App() {
     image: "/images/projects/makertech.jpg",
     link: "https://makertech-official-website.onrender.com",
   },
+  {
+  number: "10",
+  name: "PickleBook",
+  category: "COURT RESERVATION MANAGEMENT SYSTEM",
+  description:
+    "A pickleball court reservation management system designed to simplify court bookings, manage court availability, organize reservation schedules, and streamline facility operations through an intuitive management platform.",
+  technologies: ["React", "Node.js", "Express.js", "MongoDB"],
+  status: "In Development",
+  color: "from-emerald-600/20 to-teal-500/5",
+  image: "/images/projects/picklebook.png",
+  link: "",
+},
 
   ];
 
