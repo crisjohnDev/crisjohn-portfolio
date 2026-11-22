@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 export default function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [isLoading, setIsLoading] = useState(true);
 
   const navLinks = [
     { id: "home", num: "01", label: "Home" },
@@ -37,6 +38,15 @@ export default function App() {
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Initial page loading screen
+  useEffect(() => {
+    const loadingTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1600);
+
+    return () => clearTimeout(loadingTimer);
   }, []);
 
 
@@ -259,6 +269,26 @@ export default function App() {
   const experiences = [
     {
       number: "01",
+      role: "IT Instructor",
+      type: "EDUCATION & IT INSTRUCTION",
+      company: "Southern Luzon Technological College Foundation, Inc. – Pioduran",
+      period: "2024 – 2025",
+      description:
+        "Delivered IT instruction and guided students in developing their knowledge and practical skills in information technology.",
+      technologies: ["IT Education", "Technical Instruction", "Computer Technology"],
+    },
+    {
+      number: "02",
+      role: "IT Programmer",
+      type: "PROFESSIONAL EXPERIENCE",
+      company: "MR Circuits and Security, Inc.",
+      period: "2025 – Present",
+      description:
+        "Developing and maintaining software solutions, business applications, and technology systems to support operational requirements.",
+      technologies: ["Software Development", "Web Applications", "Database Management"],
+    },
+    {
+      number: "03",
       role: "Full-Stack Development",
       type: "SOFTWARE DEVELOPMENT",
       description:
@@ -266,7 +296,7 @@ export default function App() {
       technologies: ["React", "Node.js", "Express", "MongoDB"],
     },
     {
-      number: "02",
+      number: "04",
       role: "Business System Development",
       type: "APPLICATION DEVELOPMENT",
       description:
@@ -274,7 +304,7 @@ export default function App() {
       technologies: ["React", "Django", "Database Design"],
     },
     {
-      number: "03",
+      number: "05",
       role: "Hardware Integration",
       type: "IT & TECHNOLOGY",
       description:
@@ -386,6 +416,55 @@ export default function App() {
 
   return (
     <div className="min-h-screen scroll-smooth overflow-x-hidden bg-[#030712] text-slate-100 selection:bg-blue-500/30 selection:text-blue-200">
+      <style>{`
+        @keyframes portfolioFadeIn {
+          from { opacity: 0; transform: translateY(22px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes loaderSpin { to { transform: rotate(360deg); } }
+        @keyframes loaderPulse {
+          0%, 100% { opacity: .45; transform: scale(.96); }
+          50% { opacity: 1; transform: scale(1.04); }
+        }
+        @keyframes loaderBar {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(250%); }
+        }
+        main > section { animation: portfolioFadeIn .85s ease-out both; }
+        main > section:nth-child(2) { animation-delay: .08s; }
+        main > section:nth-child(3) { animation-delay: .14s; }
+        main > section:nth-child(4) { animation-delay: .20s; }
+        main > section:nth-child(5) { animation-delay: .26s; }
+        main > section:nth-child(6) { animation-delay: .32s; }
+        main > section:nth-child(7) { animation-delay: .38s; }
+        @media (prefers-reduced-motion: reduce) {
+          *, *::before, *::after {
+            animation-duration: .01ms !important;
+            animation-iteration-count: 1 !important;
+            scroll-behavior: auto !important;
+          }
+        }
+      `}</style>
+
+      {/* FIRST-OPEN LOADING SCREEN */}
+      {isLoading && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#030712] transition-opacity duration-500">
+          <div className="flex flex-col items-center px-6 text-center">
+            <div className="relative flex h-20 w-20 items-center justify-center">
+              <div className="absolute inset-0 rounded-2xl border border-blue-500/30" style={{ animation: "loaderSpin 3s linear infinite" }} />
+              <div className="absolute inset-2 rounded-xl border-2 border-t-blue-400 border-r-cyan-400 border-b-transparent border-l-transparent" style={{ animation: "loaderSpin 1.2s linear infinite" }} />
+              <span className="font-mono text-xl font-bold text-blue-400" style={{ animation: "loaderPulse 1.4s ease-in-out infinite" }}>&lt;/&gt;</span>
+            </div>
+            <h2 className="mt-7 font-mono text-lg font-bold tracking-[0.2em] text-white">CRIS JOHN RAMIREZ</h2>
+            <p className="mt-2 font-mono text-[10px] tracking-[0.3em] text-blue-400">INITIALIZING PORTFOLIO</p>
+            <div className="mt-7 h-[2px] w-48 overflow-hidden rounded-full bg-white/10">
+              <div className="h-full w-1/3 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400" style={{ animation: "loaderBar 1.1s ease-in-out infinite" }} />
+            </div>
+            <p className="mt-3 text-[10px] text-slate-500">Loading experience...</p>
+          </div>
+        </div>
+      )}
+
       {/* TOP ACCENT */}
       <div className="fixed inset-x-0 top-0 z-50 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
 
@@ -555,27 +634,6 @@ export default function App() {
                   className="rounded-lg bg-blue-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/20 transition hover:-translate-y-1 hover:bg-blue-500"
                 >
                   Explore Projects <span className="ml-2">↗</span>
-                </a>
-
-                <a
-                  href="/resume.pdf"
-                  download="Cris-John-Ramirez-Resume.pdf"
-                  className="inline-flex items-center gap-2 rounded-lg border border-blue-500/40 bg-blue-950/30 px-7 py-3.5 text-sm font-semibold text-blue-300 transition hover:-translate-y-1 hover:border-blue-400 hover:bg-blue-900/40"
-                >
-                  <svg
-                    className="h-4 w-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    strokeWidth="2"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3"
-                    />
-                  </svg>
-                  Download Resume
                 </a>
 
                 <a
@@ -859,6 +917,12 @@ export default function App() {
                     <h3 className="mt-3 text-xl font-semibold text-white">
                       {experience.role}
                     </h3>
+                    {experience.company && (
+                      <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
+                        <span className="text-sm font-medium text-slate-300">{experience.company}</span>
+                        <span className="font-mono text-[10px] text-blue-400">{experience.period}</span>
+                      </div>
+                    )}
                     <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-400">
                       {experience.description}
                     </p>
