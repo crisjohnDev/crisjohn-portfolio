@@ -226,6 +226,26 @@ export default function App() {
   image: "/images/projects/picklebook.png",
   link: "",
 },
+{
+  number: "11",
+  name: "Energy Monitoring System with IoT",
+  category: "IOT-BASED ENERGY MONITORING SYSTEM",
+  description:
+    "An IoT-based energy monitoring system designed to monitor and track electricity consumption in real time. The system integrates microcontrollers, electrical sensors, and a web-based monitoring dashboard to collect, visualize, and analyze energy usage, helping users monitor power consumption and improve energy efficiency.",
+  technologies: [
+    "React",
+    "Node.js",
+    "Express.js",
+    "MongoDB",
+    "ESP32",
+    "IoT",
+    "Electrical Sensors"
+  ],
+  status: "Completed",
+  color: "from-emerald-600/20 to-teal-500/5",
+  image: "/images/projects/energy-monitoring.png",
+  link: "https://electricity-consumption-monitoring-dk63.onrender.com",
+},
 
   ];
 
