@@ -224,7 +224,7 @@ export default function App() {
   status: "In Development",
   color: "from-emerald-600/20 to-teal-500/5",
   image: "/images/projects/picklebook.png",
-  link: "",
+  link: "https://picklebook-sample.onrender.com/",
 },
 {
   number: "11",
